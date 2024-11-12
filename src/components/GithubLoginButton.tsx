@@ -1,4 +1,7 @@
 "use client";
+
+import { Button } from "./ui/button";
+
 const GithubSignInButton = () => {
   const handleGitHubSignIn = async () => {
     const clientId = process.env.NEXT_PUBLIC_GITHUB_CLIENT_ID;
@@ -6,7 +9,11 @@ const GithubSignInButton = () => {
 
     window.location.href = `https://github.com/login/oauth/authorize?client_id=${clientId}&redirect_uri=${redirectUri}`;
   };
-  return <button onClick={handleGitHubSignIn}>Sign in with GitHub</button>;
+  return (
+    <Button variant="outline" onClick={handleGitHubSignIn}>
+      Sign in with GitHub
+    </Button>
+  );
 };
 
 export default GithubSignInButton;

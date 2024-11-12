@@ -1,6 +1,7 @@
 "use client";
 
 import { useRouter } from "next/navigation";
+import { Button } from "./ui/button";
 
 const GithubSignOutButton = () => {
   const router = useRouter();
@@ -13,7 +14,11 @@ const GithubSignOutButton = () => {
     }
   };
 
-  return <button onClick={handleSignOut}>Sign Out</button>;
+  return (
+    <Button variant="destructive" onClick={handleSignOut}>
+      Sign Out
+    </Button>
+  );
 };
 
 export default GithubSignOutButton;
