@@ -1,6 +1,9 @@
 import Image from "next/image";
 import { SessionManager } from "./api/session";
-import GithubLoginButton from "@/components/GithubLoginButton";
+import Navbar from "@/components/Navbar";
+import Hero from "@/components/Hero";
+import Features from "@/components/Features";
+import GetStarted from "@/components/GetStarted";
 
 export default async function Home() {
   const session = await SessionManager.getSession();
@@ -21,7 +24,12 @@ export default async function Home() {
           <p>GitHub Email: {session.email}</p>
         </div>
       ) : (
-        <GithubLoginButton />
+        <div className="flex flex-col min-h-screen">
+          <Navbar />
+          <Hero />
+          <Features />
+          <GetStarted />
+        </div>
       )}
     </div>
   );
