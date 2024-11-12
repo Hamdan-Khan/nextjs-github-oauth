@@ -35,13 +35,24 @@ interface GithubUser {
   updated_at: string;
 }
 
-type GithubUserBasicInfo = Pick<
+export type Session = Pick<
   GithubUser,
-  "name" | "email" | "avatar_url" | "login" | "id" // define the properties you want to expose
+  | "name"
+  | "email"
+  | "avatar_url"
+  | "login"
+  | "id"
+  | "bio"
+  | "created_at"
+  | "updated_at"
+  | "public_repos"
+  | "followers"
+  | "following"
+  | "location" // define the properties you want to expose
 >;
 
 export class SessionManager {
-  static async getSession(): Promise<GithubUserBasicInfo | null> {
+  static async getSession(): Promise<Session | null> {
     const githubUserCookie = (await cookies()).get("githubUser");
     if (!githubUserCookie) return null;
     const githubUser = JSON.parse(githubUserCookie.value) as GithubUser;
@@ -51,6 +62,13 @@ export class SessionManager {
       avatar_url: githubUser.avatar_url,
       login: githubUser.login,
       id: githubUser.id,
+      bio: githubUser.bio,
+      created_at: githubUser.created_at,
+      updated_at: githubUser.updated_at,
+      followers: githubUser.followers,
+      following: githubUser.following,
+      location: githubUser.location,
+      public_repos: githubUser.public_repos,
     };
   }
 
